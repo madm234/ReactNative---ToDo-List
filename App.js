@@ -1,20 +1,50 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React,{useState} from "react";
+import { StyleSheet,Text,View,FlatList,StatusBar} from "react-native";
+import Header from './components/header';
+import Card from './components/card';
+import Input from './components/input'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default function App(){
+  const[naam,changeName] =useState([
+    {name: 'Shower', key: '1'},
+    {name: 'Breakfast', key: '2'},
+    {name: 'Study', key: '3'},
+    {name: 'Lunch', key: '4'},
+    {name: 'Study', key: '5'},
+    {name: 'PlayTime', key: '6'},
+    {name: 'Dinner', key: '7'},
+    {name: 'Study', key: '8'},
+    {name: 'Sleep', key: '9'},
+  ]);
+
+  const setHandler =(key)=>{ 
+    changeName((prev)=>{
+      return prev.filter(todo => todo.key!=key);
+    })
+  }
+
+  return(
+    <>
+      <StatusBar barStyle='light-content' backgroundColor='#b13c31'/>
+      <View style={styles.containe}>
+        {/* Header */}
+        <Header />
+
+        {/* Adding more */}
+        <Input />
+        
+        {/* Main */}
+        <FlatList data={naam} renderItem={({item})=>(
+          <Card item={item} setHandler={setHandler}/>
+        )} />
+      </View>
+    </>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const styles =StyleSheet.create({
+  containe: {
+    height: '100%',
+    // backgroundColor: '#98E4FF'
+  }
+})
