@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import { StyleSheet,Text,View,FlatList,StatusBar} from "react-native";
+import { StyleSheet,Text,View,FlatList,StatusBar,Alert} from "react-native";
 import Header from './components/header';
 import Card from './components/card';
 import Input from './components/input'
@@ -19,11 +19,18 @@ export default function App(){
   const[ind,incInd] =useState(11);
 
   const addNew =(item)=>{
-    incInd(ind+1);
-    changeName((prev)=>[
-      {name: item, key: ind.toString()},
-      ...prev
-    ])
+    if(item.length>3){
+      incInd(ind+1);
+      changeName((prev)=>[
+        {name: item, key: ind.toString()},
+        ...prev
+      ])
+    }
+    else{
+      Alert.alert('OOPS!','Todo must be over 3 chars long.',[
+        {text: 'Understood',onPress:()=> console.log('Pressed')}
+      ])
+    }
   }
 
   const setHandler =(key)=>{ 
