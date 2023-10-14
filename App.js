@@ -16,10 +16,12 @@ export default function App(){
     {name: 'Study', key: '8'},
     {name: 'Sleep', key: '9'},
   ]);
+  const[ind,incInd] =useState(11);
 
   const addNew =(item)=>{
+    incInd(ind+1);
     changeName((prev)=>[
-      {name: item, key: '10'},
+      {name: item, key: ind.toString()},
       ...prev
     ])
   }
