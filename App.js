@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import { StyleSheet,Text,View,FlatList,StatusBar,Alert} from "react-native";
+import { StyleSheet,Text,View,FlatList,StatusBar,Alert,TouchableWithoutFeedback,Keyboard} from "react-native";
 import Header from './components/header';
 import Card from './components/card';
 import Input from './components/input'
@@ -42,6 +42,9 @@ export default function App(){
   return(
     <>
       <StatusBar barStyle='light-content' backgroundColor='#b13c31'/>
+      <TouchableWithoutFeedback onPress={()=>{
+      Keyboard.dismiss();
+      }}>
       <View style={styles.containe}>
         {/* Header */}
         <Header />
@@ -54,6 +57,7 @@ export default function App(){
           <Card item={item} setHandler={setHandler}/>
         )} />
       </View>
+      </TouchableWithoutFeedback>
     </>
   )
 }
