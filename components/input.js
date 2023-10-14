@@ -1,11 +1,13 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {StyleSheet,Text,View,TextInput} from 'react-native'
 
-export default function Input(){
+export default function Input({addNew}){
+    const[name,chngName] =useState('');
+
     return(
     <View style={styles.inpView}>
-        <TextInput style={styles.txtinp} placeholder='Add Activity' />
-        <Text style={styles.addbtn}>Add+</Text>
+        <TextInput onChangeText={(val)=>chngName(val)} style={styles.txtinp} placeholder='Add Activity' />
+        <Text onPress={()=>addNew(name)} style={styles.addbtn}>Add+</Text>
     </View>
     )
 }

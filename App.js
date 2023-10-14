@@ -17,6 +17,13 @@ export default function App(){
     {name: 'Sleep', key: '9'},
   ]);
 
+  const addNew =(item)=>{
+    changeName((prev)=>[
+      {name: item, key: '10'},
+      ...prev
+    ])
+  }
+
   const setHandler =(key)=>{ 
     changeName((prev)=>{
       return prev.filter(todo => todo.key!=key);
@@ -31,7 +38,7 @@ export default function App(){
         <Header />
 
         {/* Adding more */}
-        <Input />
+        <Input addNew={addNew} />
         
         {/* Main */}
         <FlatList data={naam} renderItem={({item})=>(
