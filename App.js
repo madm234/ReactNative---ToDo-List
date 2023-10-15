@@ -3,6 +3,7 @@ import { StyleSheet,Text,View,FlatList,StatusBar,Alert,TouchableWithoutFeedback,
 import Header from './components/header';
 import Card from './components/card';
 import Input from './components/input'
+import Sandbox from './components/sandbox'
 
 export default function App(){
   const[naam,changeName] =useState([
@@ -10,11 +11,11 @@ export default function App(){
     {name: 'Breakfast', key: '2'},
     {name: 'Study', key: '3'},
     {name: 'Lunch', key: '4'},
-    {name: 'Study', key: '5'},
-    {name: 'PlayTime', key: '6'},
-    {name: 'Dinner', key: '7'},
-    {name: 'Study', key: '8'},
-    {name: 'Sleep', key: '9'},
+    // {name: 'Study', key: '5'},
+    // {name: 'PlayTime', key: '6'},
+    // {name: 'Dinner', key: '7'},
+    // {name: 'Study', key: '8'},
+    // {name: 'Sleep', key: '9'},
   ]);
   const[ind,incInd] =useState(11);
 
@@ -41,18 +42,16 @@ export default function App(){
 
   return(
     <>
+      {/* <Sandbox /> */}
       <StatusBar barStyle='light-content' backgroundColor='#b13c31'/>
       <TouchableWithoutFeedback onPress={()=>{
       Keyboard.dismiss();
       }}>
       <View style={styles.containe}>
-        {/* Header */}
         <Header />
 
-        {/* Adding more */}
         <Input addNew={addNew} />
         
-        {/* Main */}
         <FlatList data={naam} renderItem={({item})=>(
           <Card item={item} setHandler={setHandler}/>
         )} />
@@ -64,7 +63,7 @@ export default function App(){
 
 const styles =StyleSheet.create({
   containe: {
-    height: '100%',
+    flex: 1
     // backgroundColor: '#98E4FF'
   }
 })
