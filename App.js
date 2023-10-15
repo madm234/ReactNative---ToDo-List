@@ -53,7 +53,9 @@ export default function App(){
         <Input addNew={addNew} />
         
         <FlatList data={naam} renderItem={({item})=>(
+          <>
           <Card item={item} setHandler={setHandler}/>
+          </>
         )} />
       </View>
       </TouchableWithoutFeedback>
